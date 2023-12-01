@@ -1,19 +1,27 @@
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput, Switch, ImageBackground } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation } from "@react-navigation/native";
 
 
+const image = {uri: 'https://static.escolakids.uol.com.br/2023/08/paisagem-natural-ilha.jpg'};
 function telaCadastro() {
- 
+  
   const navigation = useNavigation()
 
   return (
     <View style={style.container}>
-      <Text>Olá, faça seu cadastro!</Text><Button />
+      <ImageBackground source={image} resizeMode="cover" style={style.image}>
+      <Text style={style.text}></Text>
+    </ImageBackground>
+      <Text>Insira seu nickname: </Text>
       <TextInput/>
-      <TextInput secureTextEntry={true}
+      <TextInput 
       />
+      <Text>Insira seu email: </Text>
+      <TextInput></TextInput>
+      <Text>Crie sua senha: </Text>
+      <TextInput secureTextEntry={true}></TextInput>
       <Button title="Cadastrar" onPress={() => {
         navigation.navigate("inicioLog")
       }}/>
@@ -60,7 +68,10 @@ function telalogin() {
   const navigation = useNavigation()
   return (
     <View style={style.container}>
-      <Text>Faça seu login</Text>
+      <Text>Insira seu email ou nickname:</Text>
+      <TextInput></TextInput>
+      <Text>Insira sua senha:</Text>
+      <TextInput></TextInput>
       <Button title="Faça login"
       onPress={() => {
         navigation.navigate("inicioLog")
@@ -73,13 +84,17 @@ function perfil() {
   return (
     <View style={style.container}>
       <Text>Aqui esta seu perfil</Text>
+      <Text>Perfil privado</Text>
+     <Switch></Switch>
+     <Text>Perfil profissional</Text>
+     <Switch></Switch>
+     <Text>Apagar/deslogar conta</Text>
       <Button title="Voltar"
       onPress={() => {
         navigation.navigate("inicioLog")
       }}/>
     </View>
   )
-  
 }
 export default function App() {
 
@@ -96,12 +111,17 @@ export default function App() {
        </Stack.Navigator>
     </NavigationContainer>
   )
-}
-
+  } 
+ 
 const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  image: {
+   flex: 1,
+
+    justifyContent: 'center',
   }
 })
