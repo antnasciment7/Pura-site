@@ -1,19 +1,16 @@
-import { View, Text, StyleSheet, Button, TextInput, Switch, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput, Switch, Pressable, Image} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation } from "@react-navigation/native";
 
 
-const image = {uri: 'https://static.escolakids.uol.com.br/2023/08/paisagem-natural-ilha.jpg'};
 function telaCadastro() {
   
   const navigation = useNavigation()
 
   return (
     <View style={style.container}>
-      <ImageBackground source={image} resizeMode="cover" style={style.image}>
-      <Text style={style.text}></Text>
-    </ImageBackground>
+      
       <Text>Insira seu nickname: </Text>
       <TextInput/>
       <TextInput 
@@ -22,14 +19,20 @@ function telaCadastro() {
       <TextInput></TextInput>
       <Text>Crie sua senha: </Text>
       <TextInput secureTextEntry={true}></TextInput>
-      <Button title="Cadastrar" onPress={() => {
+     
+      <Pressable onPress={() => {
         navigation.navigate("inicioLog")
-      }}/>
-      <Button title="fazer login"
+      }}>
+        <Text>Cadastrar</Text>
+      </Pressable>
+      <Pressable title="fazer login"
       onPress={() => {
         navigation.navigate("telalogin")
-
-      }}/>
+      }}>
+        <Text> Fazer login</Text>
+      </Pressable>
+   
+  
     </View>
     
   )
@@ -39,16 +42,20 @@ function inicioLog() {
   return (
     <View style={style.container}>
       <Text>Bem vindo! Parabens pelo cadastro</Text>
-      <Button title="Voltar"
+      <Pressable title="Voltar"
       onPress={() => {
         navigation.navigate("telaCadastro")
+      }}>
+      <Text>Voltar</Text>
+      </Pressable>
 
-      }}/>
-      <Button title="Para o perfil"
+      <Pressable title="Para o perfil"
       onPress={() => {
         navigation.navigate("perfil")
         
-      }}/>
+      }}>
+        <Text>para o perfil</Text>
+        </Pressable>
     </View>
   )
 }
@@ -56,11 +63,20 @@ function inicial() {
   const navigation = useNavigation()
   return (
     <View style={style.container}>
+      <Image source={{
+        uri: "https://www.puri.com.br/wp-content/uploads/2021/05/banner-item-5.png"
+      }}
+      style={style.image}
+      />
+      <br>
+      </br>
       <Text>Bem vindo ao site.</Text>
-      <Button title="Cadastrar"
+      <Pressable title="Cadastrar"
       onPress={() => {
         navigation.navigate("telaCadastro")
-      }}/>
+      }}>
+        <Text> Cadastrar</Text>
+        </Pressable>
     </View>
   )
   }
@@ -72,10 +88,12 @@ function telalogin() {
       <TextInput></TextInput>
       <Text>Insira sua senha:</Text>
       <TextInput></TextInput>
-      <Button title="Faça login"
+      <Pressable title="Faça login"
       onPress={() => {
         navigation.navigate("inicioLog")
-      }}/>
+      }}>
+        <Text>Faça seu login</Text>
+        </Pressable>
     </View>
   )
 }
@@ -89,10 +107,12 @@ function perfil() {
      <Text>Perfil profissional</Text>
      <Switch></Switch>
      <Text>Apagar/deslogar conta</Text>
-      <Button title="Voltar"
+      <Pressable title="Voltar"
       onPress={() => {
         navigation.navigate("inicioLog")
-      }}/>
+      }}>
+        <Text>voltar</Text>
+        </Pressable>
     </View>
   )
 }
@@ -117,11 +137,14 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+backgroundColor: 'green',
   },
-  image: {
-   flex: 1,
+  
+  image: { 
+    width: 700,
+    height: 200,
+    borderRadius: 5
 
-    justifyContent: 'center',
   }
 })
